@@ -306,37 +306,59 @@ p {
   margin-top: var(--space-200);
 }
 
-/* FOMO Counter - Subtle Capacity Indicator */
+/* FOMO Counter - Capacity Indicator */
 .fomo-counter {
   display: flex;
   align-items: center;
-  gap: var(--space-200);
+  gap: var(--space-300);
   margin-top: var(--space-300);
-  padding: var(--space-100) 0;
-}
-
-.fomo-counter__indicator {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--color-accent-base);
-  animation: fomo-pulse 2s ease-in-out infinite;
-  flex-shrink: 0;
+  padding: var(--space-200);
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
 }
 
 .fomo-counter__text {
   font-family: var(--font-body);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   color: var(--color-text-muted);
   font-weight: var(--weight-medium);
+  white-space: nowrap;
+}
+
+.fomo-counter__slots {
+  display: flex;
+  gap: 4px;
+}
+
+.fomo-counter__slot {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-main);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.fomo-counter__slot.filled {
+  background-color: var(--color-accent-base);
+  border-color: var(--color-accent-base);
+}
+
+.fomo-counter__slot.blinking {
+  background-color: var(--color-accent-text);
+  border-color: var(--color-accent-text);
+  animation: fomo-pulse 1.5s ease-in-out infinite;
 }
 
 @keyframes fomo-pulse {
   0%, 100% {
     opacity: 1;
+    transform: scale(1);
   }
   50% {
-    opacity: 0.4;
+    opacity: 0.5;
+    transform: scale(0.95);
   }
 }
 
