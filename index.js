@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".nav-menu .nav-link");
   
   // We only track actual section IDs on the current page
-  const sectionSelectors = ["services", "about", "faq", "blog", "newsletter", "contact"];
+  const sectionSelectors = ["services", "parents", "about", "gallery", "faq", "blog", "newsletter", "contact"];
   const sections = [];
   
   sectionSelectors.forEach(id => {

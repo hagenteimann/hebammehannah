@@ -60,7 +60,7 @@ body {
   /* Generous Spacing - 8pt Grid with enhanced White Space */
   --space-100: 8px;
   --space-200: 16px;
-  --space-250: 20px; /* Missing spacer token for button and tag paddings */
+  --space-250: 20px;
   --space-300: 24px;
   --space-400: 36px;
   --space-500: 48px;
@@ -68,50 +68,34 @@ body {
   --space-700: 96px;
   --space-800: 144px;
 
-  /* Architectural Sharp Edges (Enforcing High-End Clinic Vibe) */
+  /* Architectural Sharp Edges */
   --radius-sm: 0px;
   --radius-md: 0px;
   --radius-lg: 0px;
 
-  /* ---------------------------------------------------------
-     60-30-10 COLOR SYSTEM (Logo-Sync Realignment)
-     --------------------------------------------------------- */
-  
-  /* 60% DOMINANT: Clean Clinic White Canvas & Soft Off-White */
-  --color-bg-main: hsl(0, 0%, 100%);          /* Pure White (Max space) */
-  --color-bg-card: hsl(40, 33%, 98%);          /* Soft Ivory Cream (#FDFBF7) */
-  --color-border:  hsl(210, 10%, 91%);          /* Ultra-subtle clinical slate line */
-
-  /* 30% SECONDARY: Stark structural slate charcoal for text and boundaries (Logo synced) */
-  --color-text-main:   hsl(210, 11%, 18%);       /* Deep Slate Charcoal (#2B2D2F) */
-  --color-text-muted:  hsl(210, 10%, 32%);       /* Medium Slate Charcoal (#4A525A) */
-  --color-text-light:  hsl(210, 10%, 40%);       /* Light support slate (#5D6670) - Upgraded to 5.83:1 WCAG AA */
-  --color-neutral-dark: hsl(210, 11%, 15%);      /* Main slate black */
-
-  /* 10% ACCENT SYSTEM: Soft Earthy Warm Beige (Logo synced) & Active highlights */
-  --color-accent-base:  hsl(22, 60%, 86%);       /* Earthy Warm Beige (#F3D8C7) */
-  --color-accent-light: hsl(22, 60%, 95%);       /* Extra light highlight cream */
-  --color-accent-deep:  hsl(22, 50%, 75%);       /* Accent deep beige (hover active) */
-  --color-accent-text:  hsl(22, 60%, 32%);       /* Deeper Earthy Terracotta Clay (#854420) - 7.2:1 WCAG AAA text color */
-  
-  /* Soft warm cream-beige for secondary button / badge backgrounds */
-  --color-bg-soft:      hsl(22, 40%, 96%);       /* Soft Beige Accent block (#F9F3EE) */
-
-  /* Supporting accents (calming Sage used extremely sparingly) */
-  --color-sage-base:    hsl(140, 15%, 45%);     /* Structured Sage */
-  --color-sage-light:   hsl(140, 15%, 95%);     /* Background light sage */
-
-  /* System Status Colors */
+  /* 60-30-10 COLOR SYSTEM */
+  --color-bg-main: hsl(0, 0%, 100%);
+  --color-bg-card: hsl(40, 33%, 98%);
+  --color-border:  hsl(210, 10%, 91%);
+  --color-text-main:   hsl(210, 11%, 18%);
+  --color-text-muted:  hsl(210, 10%, 32%);
+  --color-text-light:  hsl(210, 10%, 40%);
+  --color-neutral-dark: hsl(210, 11%, 15%);
+  --color-accent-base:  hsl(22, 60%, 86%);
+  --color-accent-light: hsl(22, 60%, 95%);
+  --color-accent-deep:  hsl(22, 50%, 75%);
+  --color-accent-text:  hsl(22, 60%, 32%);
+  --color-bg-soft:      hsl(22, 40%, 96%);
+  --color-sage-base:    hsl(140, 15%, 45%);
+  --color-sage-light:   hsl(140, 15%, 95%);
   --color-success: hsl(140, 40%, 35%);
   --color-warning: hsl(35, 70%, 45%);
   --color-danger:  hsl(0, 65%, 45%);
-
-  /* Transitions */
   --transition-smooth: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 /* --------------------------------------------------------------------------
-   2. Typography System (Highly structured, clean alignments)
+   2. Typography System
    -------------------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
@@ -141,11 +125,11 @@ p {
 }
 
 .text-muted {
-  color: var(--color-text-muted); /* Upgraded for solid AAA readability */
+  color: var(--color-text-muted);
 }
 
 .text-accent {
-  color: var(--color-accent-text); /* 7.2:1 WCAG AAA contrast */
+  color: var(--color-accent-text);
 }
 
 /* --------------------------------------------------------------------------
@@ -175,15 +159,20 @@ p {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .grid-3col {
     grid-template-columns: 1fr;
     gap: var(--space-300);
   }
 }
 
+.grid-3col img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* --------------------------------------------------------------------------
-   4. Bento Grid (Stark structural borders & massive breathing space)
+   4. Bento Grid
    -------------------------------------------------------------------------- */
 .bento-grid {
   display: grid;
@@ -200,6 +189,8 @@ p {
   justify-content: space-between;
   border-radius: var(--radius-lg);
   transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
 }
 
 .bento-item:hover {
@@ -207,7 +198,14 @@ p {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.03);
 }
 
-/* Bento Ratio Approximations */
+.bento-item img {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-item:hover img {
+  transform: scale(1.03);
+}
+
 .bento-square   { aspect-ratio: 1 / 1; }
 .bento-wide     { aspect-ratio: 16 / 9; }
 .bento-portrait { aspect-ratio: 4 / 5; }
@@ -241,10 +239,8 @@ p {
 }
 
 /* --------------------------------------------------------------------------
-   5. Components (Highly functional, geometric, high-contrast)
+   5. Components
    -------------------------------------------------------------------------- */
-
-/* Premium Structural Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -263,17 +259,15 @@ p {
   letter-spacing: -0.01em;
 }
 
-/* 10% Accent CTA - Vibrant Terracotta */
 .btn--primary {
   background-color: var(--color-accent-base);
-  color: var(--color-text-main); /* Changed from white to deep slate for 8.9:1 WCAG AAA contrast */
+  color: var(--color-text-main);
 }
 
 .btn--primary:hover {
   background-color: var(--color-accent-deep);
 }
 
-/* 30% Secondary CTA - Charcoal */
 .btn--secondary {
   background-color: var(--color-bg-soft);
   color: var(--color-text-main);
@@ -284,7 +278,6 @@ p {
   background-color: var(--color-border);
 }
 
-/* Outline CTA */
 .btn--outline {
   background-color: transparent;
   border: 1px solid var(--color-text-main);
@@ -295,7 +288,6 @@ p {
   background-color: var(--color-bg-soft);
 }
 
-/* Button Utility Scale-Ups & Containers */
 .btn--sm {
   min-height: 38px !important;
   padding: var(--space-100) var(--space-200) !important;
@@ -314,7 +306,6 @@ p {
   margin-top: var(--space-200);
 }
 
-/* Clean Form Controls */
 .form-group {
   margin-bottom: var(--space-300);
 }
@@ -345,7 +336,6 @@ p {
   border-color: var(--color-text-main);
 }
 
-/* Minimal Badges */
 .badge {
   display: inline-flex;
   padding: var(--space-100) var(--space-200);
@@ -353,7 +343,7 @@ p {
   font-weight: var(--weight-semibold);
   border-radius: var(--radius-sm);
   background-color: var(--color-accent-light);
-  color: var(--color-accent-text); /* Upgraded to Earthy Clay for perfect 7.2:1 AAA contrast */
+  color: var(--color-accent-text);
 }
 
 .badge--secondary {
@@ -362,13 +352,12 @@ p {
   border: 1px solid var(--color-border);
 }
 
-/* Global Tag Indicator Component */
 .tag {
   display: inline-block;
   font-family: var(--font-body);
   font-size: var(--text-xs);
   font-weight: var(--weight-bold);
-  color: var(--color-accent-text); /* Deeper Terracotta Clay */
+  color: var(--color-accent-text);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: var(--space-200);
@@ -381,7 +370,6 @@ p {
   margin-right: auto;
 }
 
-/* Global Section Header Layout */
 .section-header {
   margin-bottom: var(--space-500);
   max-width: 800px;
@@ -393,12 +381,11 @@ p {
   margin-right: auto;
 }
 
-/* Modern Card Component & Hover States */
 .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: var(--radius-md); /* Sharp edges (0px) */
+  border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
   background-color: var(--color-bg-card);
   padding: var(--space-400);
@@ -411,12 +398,11 @@ p {
 
 .card:hover {
   transform: translateY(-8px);
-  border-color: var(--color-accent-base); /* Logo Warm Beige highlight */
+  border-color: var(--color-accent-base);
   box-shadow: 0 20px 40px rgba(133, 68, 32, 0.04), 
               0 1px 3px rgba(0, 0, 0, 0.01);
 }
 
-/* Accent link text arrow micro-animation inside card on hover */
 .card .text-accent {
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -428,8 +414,6 @@ p {
 /* --------------------------------------------------------------------------
    6. Motion & loading states
    -------------------------------------------------------------------------- */
-
-/* Viewport Scroll-Driven Animations */
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(40px);
@@ -444,25 +428,31 @@ p {
   transform: translateY(0);
 }
 
-/* Paragraph Reveal */
 .hero-reveal {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .reveal-line {
   display: block;
-  opacity: 0;
   transform: translateY(40px);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .reveal-line {
+    opacity: 0;
     animation: line-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .reveal-line:nth-child(1) { animation-delay: 0.05s; }
   .reveal-line:nth-child(2) { animation-delay: 0.15s; }
   .reveal-line:nth-child(3) { animation-delay: 0.25s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-line {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes line-reveal {
@@ -472,7 +462,6 @@ p {
   }
 }
 
-/* Skeleton Screens */
 .skeleton {
   background: var(--color-bg-soft);
   border-radius: var(--radius-sm);
@@ -498,7 +487,6 @@ p {
   100% { background-position: -200% 0; }
 }
 
-/* Structured Minimal Empty State */
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -559,13 +547,14 @@ p {
   margin-bottom: var(--space-800);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
-  clip-path: inset(0); /* Clean crop boundary for fixed viewport child */
+  clip-path: inset(0);
   background-color: var(--color-bg-main);
   overflow: hidden;
+  z-index: 1;
 }
 
 .video-banner video {
-  position: fixed; /* Fix video to viewport for parallax scrolling */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -576,13 +565,6 @@ p {
   pointer-events: none;
 }
 
-/* Touch Fallback to avoid iOS layout jumping */
-@media (pointer: coarse) {
-  .video-banner video {
-    position: absolute;
-  }
-}
-
 .video-banner::after {
   content: '';
   position: absolute;
@@ -590,26 +572,67 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(43, 45, 47, 0.35); /* Soft deep slate dimming overlay for perfect WCAG compliance */
+  background: rgba(43, 45, 47, 0.55);
   pointer-events: none;
   z-index: 2;
 }
 
 .parallax-quote {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: var(--font-serif);
-  font-size: clamp(1.6rem, 3.5vw, 2.6rem); /* Breathtaking responsive visual scale */
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
   color: #FFFFFF;
   font-weight: var(--weight-medium);
   letter-spacing: -0.015em;
   line-height: 1.25;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35); /* Deep high-contrast shadow for absolute premium clarity */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   margin: 0;
   z-index: 3;
+  text-align: center;
+  width: 100%;
+  padding: 0 var(--space-300);
 }
 
-/* --------------------------------------------------------------------------
-   9. Floating Action Widget (Mobile-First Optimized CTA)
-   -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* 9a. Showcase Website Info Banner */
+/* -------------------------------------------------------------------------- */
+.showcase-banner {
+  position: fixed;
+  bottom: var(--space-400);
+  left: var(--space-400);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: var(--space-100);
+  background-color: hsl(35, 70%, 45%);
+  color: #fff;
+  padding: 8px 16px;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  border-radius: 0px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.showcase-banner__icon {
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .showcase-banner {
+    bottom: calc(var(--space-300) + 70px);
+    left: var(--space-300);
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 9. Floating Action Widget (Mobile-First Optimized CTA) */
+/* -------------------------------------------------------------------------- */
 .phone-widget {
   position: fixed;
   bottom: var(--space-400);
@@ -618,10 +641,10 @@ p {
   display: flex;
   align-items: center;
   gap: var(--space-200);
-  background-color: var(--color-text-main); /* Deep Slate #2B2D2F */
-  color: var(--color-accent-base); /* Earthy Beige #F3D8C7 */
+  background-color: var(--color-text-main);
+  color: var(--color-accent-base);
   padding: 12px 20px;
-  border-radius: 0px; /* Sharp corners */
+  border-radius: 0px;
   text-decoration: none;
   box-shadow: 0 4px 24px rgba(43, 45, 47, 0.2);
   font-family: var(--font-body);
@@ -629,12 +652,13 @@ p {
   font-size: var(--text-sm);
   transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
   border: 1px solid var(--color-border);
+  visibility: visible;
 }
 
 .phone-widget:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 32px rgba(43, 45, 47, 0.3);
-  background-color: #1e2022; /* Sleek tactile response */
+  background-color: #1e2022;
 }
 
 .phone-widget__icon {
@@ -655,12 +679,12 @@ p {
   white-space: nowrap;
 }
 
-/* Mobile First collapse query */
 @media (max-width: 480px) {
   .phone-widget {
     bottom: var(--space-300);
     right: var(--space-300);
     padding: 10px 14px;
+    display: flex;
   }
   
   .phone-widget__text::before {
@@ -672,10 +696,70 @@ p {
   }
 }
 
+@media (max-width: 768px) {
+  .phone-widget {
+    bottom: var(--space-300);
+    right: var(--space-300);
+    width: 56px;
+    height: 56px;
+    border-radius: 50% !important;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 24px rgba(43, 45, 47, 0.25);
+    display: flex !important;
+    visibility: visible;
+  }
+  
+  .phone-widget__text {
+    display: none !important;
+  }
+  
+  .phone-widget__icon {
+    width: 24px;
+    height: 24px;
+    margin: 0;
+  }
+}
 
+@media (prefers-reduced-motion: no-preference) {
+  .phone-widget {
+    animation: widget-pulse 3s infinite ease-in-out;
+  }
+  
+  .phone-widget::before {
+    animation: phone-ripple-wave 4s infinite cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@keyframes widget-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba(43, 45, 47, 0.25);
+  }
+  50% {
+    transform: scale(1.06) translateY(-2px);
+    box-shadow: 0 12px 32px rgba(43, 45, 47, 0.35);
+  }
+}
+
+@keyframes phone-ripple-wave {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
 
 /* --------------------------------------------------------------------------
-   11. Native Hebammen FAQ Accordion Section
+   10. FAQ Accordion
    -------------------------------------------------------------------------- */
 .faq-list {
   max-width: 1000px;
@@ -709,15 +793,14 @@ p {
   font-weight: var(--weight-semibold);
   color: var(--color-text-main);
   cursor: pointer;
-  list-style: none; /* Hide default chrome disclosure arrow */
+  list-style: none;
   user-select: none;
 }
 
 .faq-item summary::-webkit-details-marker {
-  display: none; /* Hide default safari disclosure arrow */
+  display: none;
 }
 
-/* Typographic Plus/Minus Indicators */
 .faq-item summary::after {
   content: '+';
   font-family: var(--font-body);
@@ -733,11 +816,11 @@ p {
 }
 
 .faq-item details[open] summary::after {
-  content: '−'; /* High-end typographic minus symbol */
+  content: '−';
 }
 
 .faq-item details[open] {
-  background-color: var(--color-bg-card); /* Soft Ivy Cream highlight on active state */
+  background-color: var(--color-bg-card);
 }
 
 .faq-content {
@@ -748,7 +831,7 @@ p {
 }
 
 /* --------------------------------------------------------------------------
-   12. Dedicated Evidence-Based Blog System
+   11. Blog System
    -------------------------------------------------------------------------- */
 .blog-filters {
   display: flex;
@@ -778,7 +861,7 @@ p {
 }
 
 .blog-card {
-  background-color: var(--color-bg-card); /* Soft Ivory Cream (#FDFBF7) */
+  background-color: var(--color-bg-card);
   border: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
@@ -788,7 +871,7 @@ p {
 
 .blog-card:hover {
   border-color: var(--color-text-muted);
-  transform: translateY(-4px); /* Premium subtle lift */
+  transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.02);
 }
 
@@ -811,7 +894,7 @@ p {
 }
 
 .blog-card__tag {
-  color: var(--color-accent-text); /* Terracotta Clay */
+  color: var(--color-accent-text);
 }
 
 .blog-card__time {
@@ -860,22 +943,30 @@ p {
 }
 
 /* --------------------------------------------------------------------------
-   13. Global Brand Header & Navigation Layout
+   12. Header & Navigation
    -------------------------------------------------------------------------- */
 .brand-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  z-index: 9999;
   padding: var(--space-200) 0;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
-  border-bottom: 2px solid var(--color-accent-base); /* Sleek beige brand bottom indicator line */
+  border-bottom: 2px solid var(--color-accent-base);
+}
+
+main {
+  padding-top: 80px;
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 201;
+  position: relative;
 }
 
 .logo {
@@ -884,6 +975,7 @@ p {
   gap: var(--space-100);
   text-decoration: none;
   color: var(--color-text-main);
+  flex-shrink: 0;
 }
 
 .logo__text {
@@ -910,7 +1002,7 @@ p {
   text-decoration: none;
   transition: color 0.25s ease;
   position: relative;
-  padding: 6px 0; /* Expanded touch zone & vertical buffer for indicator */
+  padding: 6px 0;
 }
 
 .nav-link::after {
@@ -920,7 +1012,7 @@ p {
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--color-accent-base); /* Fine beige line (#F3D8C7) */
+  background-color: var(--color-accent-base);
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -941,7 +1033,6 @@ p {
   font-weight: var(--weight-semibold);
 }
 
-/* Contact Grid Layout */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -953,7 +1044,8 @@ p {
     grid-template-columns: 1fr;
     gap: var(--space-500);
   }
-}/* Social Media Icons in Header Navigation */
+}
+
 .social-icon-link,
 .social-icon-link:visited {
   color: var(--color-text-light) !important;
@@ -964,26 +1056,28 @@ p {
 }
 
 .social-icon-link:hover {
-  color: var(--color-accent-text) !important; /* Warm terracotta brand hover */
+  color: var(--color-accent-text) !important;
   transform: scale(1.15);
 }
 
 @media (max-width: 768px) {
   .nav-socials {
-    display: none !important; /* Gracefully hide socials on small screens to prevent visual clutter */
+    display: none !important;
   }
 }
 
-/* ==========================================================================
-   14. MOBILE RESPONSIVENESS & PREMIUM COMPONENT OVERRIDES
-   ========================================================================== */
-
-/* --- 14.1 Consolidated Grid Classes (Replacing inline grids) --- */
+/* --------------------------------------------------------------------------
+   13. MOBILE RESPONSIVENESS
+   -------------------------------------------------------------------------- */
 .hero-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: var(--space-600);
   align-items: start;
+}
+
+.hero-text {
+  padding-top: var(--space-600);
 }
 
 .philosophy-grid {
@@ -1015,19 +1109,59 @@ p {
   width: 100%;
 }
 
-/* --- 14.2 Media Queries for Grid Layouts --- */
+/* --- Tablet & Mobile Grid Adjustments --- */
 @media (max-width: 992px) {
   .hero-grid {
     grid-template-columns: 1fr;
     gap: var(--space-400);
   }
+  .hero-text {
+    padding-top: 0;
+  }
   .newsletter-grid {
     grid-template-columns: 1fr;
     gap: var(--space-400);
   }
-  .asymmetric-flow-grid {
+  .contact-grid {
     grid-template-columns: 1fr;
     gap: var(--space-400);
+  }
+  .nav-toggle {
+    display: flex;
+    z-index: 1005;
+    position: absolute;
+    right: var(--space-300);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .mobile-header-btn {
+    display: inline-flex;
+    margin-right: calc(var(--space-300) + 40px);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-main);
+    background-color: var(--color-accent-base);
+    border: 1px solid var(--color-accent-base);
+    padding: var(--space-100) var(--space-300);
+    text-decoration: none;
+    min-height: auto;
+    white-space: nowrap;
+    border-radius: 0px;
+    z-index: 1001;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+  }
+  .mobile-header-btn:hover {
+    background-color: transparent;
+    color: var(--color-accent-text);
+    border-color: var(--color-accent-text);
+  }
+  .mobile-header-btn ~ .nav-toggle {
+    margin-left: 0;
+  }
+  .nav-menu {
+    display: none;
   }
 }
 
@@ -1040,15 +1174,126 @@ p {
     grid-template-columns: 1fr;
     gap: var(--space-400);
   }
-  /* Ensure about image does not squish and takes full area on mobile */
   .about-grid img {
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
   }
+  .section-padding {
+    padding: var(--space-600) 0;
+  }
+  .container {
+    padding: 0 var(--space-300);
+  }
+  .phone-widget {
+    display: flex !important;
+    bottom: var(--space-300);
+    right: var(--space-300);
+    width: 56px;
+    height: 56px;
+    border-radius: 50% !important;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 24px rgba(43, 45, 47, 0.25);
+  }
+  .phone-widget__text {
+    display: none !important;
+  }
+  .phone-widget__icon {
+    width: 24px;
+    height: 24px;
+    margin: 0;
+  }
+  .nav-socials {
+    display: none !important;
+  }
 }
 
-/* --- 14.3 Premium Mobile Hamburger Navigation Drawer --- */
+@media (max-width: 480px) {
+  .btn-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .nav-toggle {
+    display: flex !important;
+    position: absolute;
+    right: var(--space-300);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .mobile-header-btn {
+    display: none !important;
+  }
+  .phone-widget {
+    display: flex !important;
+  }
+  .form-control {
+    padding: var(--space-200);
+  }
+  .form-group {
+    margin-bottom: var(--space-200);
+  }
+}
+
+/* Mobile Navigation Drawer */
+@media (max-width: 480px) {
+  .nav-menu {
+    position: fixed !important;
+    top: 60px !important;
+    left: auto !important;
+    right: -100% !important;
+    width: 280px !important;
+    max-width: 80vw !important;
+    height: calc(100vh - 60px) !important;
+    background: #fff !important;
+    flex-direction: column !important;
+    padding: var(--space-400) !important;
+    z-index: 1006 !important;
+    display: flex !important;
+    transition: right 0.3s ease !important;
+  }
+
+  .nav-menu.active {
+    right: 0 !important;
+  }
+
+  .nav-menu li {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: var(--space-200) 0 !important;
+    border-bottom: 1px solid #ddd !important;
+  }
+
+  .nav-menu li a {
+    display: block !important;
+    width: 100% !important;
+    padding: var(--space-200) 0 !important;
+    color: #333 !important;
+    text-decoration: none !important;
+    font-size: 16px !important;
+  }
+
+  .nav-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    transition: transform 0.3s ease !important;
+  }
+  .nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transition: opacity 0.3s ease !important;
+  }
+  .nav-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+    transition: transform 0.3s ease !important;
+  }
+}
+
+/* --- Hamburger Navigation Base --- */
 .mobile-header-btn {
   display: none;
 }
@@ -1062,8 +1307,12 @@ p {
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 1001; /* Must stay above header overlay */
+  z-index: 1005;
   padding: 0;
+  position: absolute;
+  right: var(--space-300);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .nav-toggle span {
@@ -1075,208 +1324,37 @@ p {
               opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (max-width: 992px) {
-  .nav-toggle {
-    display: flex;
-    margin-left: auto; /* Fallback alignment when CTA button is absent */
-  }
-  
-  .mobile-header-btn {
-    display: inline-flex;
-    margin-left: auto; /* Pushes the button to the right of the logo */
-    margin-right: var(--space-300); /* Elegant spacing from hamburger */
-    font-size: var(--text-xs);
-    font-weight: var(--weight-bold);
-    color: var(--color-text-main);
-    background-color: var(--color-accent-base); /* Earthy Clay/Beige brand color */
-    border: 1px solid var(--color-accent-base);
-    padding: var(--space-100) var(--space-300);
-    text-decoration: none;
-    min-height: auto;
-    white-space: nowrap;
-    border-radius: 0px; /* Sharp corners per Corporate Design manual */
-    z-index: 1001;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition-smooth);
-  }
-  
-  .mobile-header-btn:hover {
-    background-color: transparent;
-    color: var(--color-accent-text);
-    border-color: var(--color-accent-text);
-  }
-  
-  /* Reset toggle margin when mobile-header-btn sibling is present */
-  .mobile-header-btn ~ .nav-toggle {
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 360px) {
-  .mobile-header-btn {
-    margin-right: var(--space-200);
-    padding: var(--space-100) var(--space-200);
-    font-size: 10px;
-  }
-}
-  
-  /* Hide the menu links horizontally */
-  .nav-menu {
-    position: fixed;
-    top: 0;
-    right: -100%; /* Hidden off-screen right */
-    width: 100%;
-    max-width: 320px;
-    height: 100vh;
-    background-color: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: var(--space-600) var(--space-400) var(--space-400) var(--space-400);
-    gap: var(--space-200);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.03);
-    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 1000;
-    border-left: 1px solid var(--color-border);
-    overflow-y: auto;
-  }
-
-  .nav-menu.active {
-    right: 0; /* Slide in! */
-  }
-
-  .nav-menu li {
-    width: 100%;
-    opacity: 0;
-    transform: translateX(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  .nav-menu.active li {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  /* Cascade delay for beautiful link reveal */
-  .nav-menu.active li:nth-child(1) { transition-delay: 0.1s; }
-  .nav-menu.active li:nth-child(2) { transition-delay: 0.15s; }
-  .nav-menu.active li:nth-child(3) { transition-delay: 0.2s; }
-  .nav-menu.active li:nth-child(4) { transition-delay: 0.25s; }
-  .nav-menu.active li:nth-child(5) { transition-delay: 0.3s; }
-  .nav-menu.active li:nth-child(6) { transition-delay: 0.35s; }
-  .nav-menu.active li:nth-child(7) { transition-delay: 0.4s; }
-
-  .nav-menu .nav-link {
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
-    padding: var(--space-200) 0;
-    display: block;
-    border-bottom: 1px solid var(--color-border);
-    width: 100%;
-    color: var(--color-text-main);
-  }
-
-  .nav-menu .nav-link::after {
-    display: none; /* Hide bottom line effect on mobile */
-  }
-
-  .nav-menu .btn {
-    width: 100%;
-    margin-top: var(--space-300);
-    min-height: 48px;
-  }
-
-  /* Hamburger Active Animation */
-  .nav-toggle.active span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-  .nav-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .nav-toggle.active span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-}
-
-/* --- 14.4 Collapsed Phone Widget (Premium circular CTA) --- */
-.phone-widget::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: inherit;
-  background-color: var(--color-text-main);
-  z-index: -1;
-  opacity: 0;
-}
-
+/* --- Video Banner Mobile --- */
 @media (max-width: 768px) {
-  .phone-widget {
-    bottom: var(--space-300);
-    right: var(--space-300);
-    width: 56px;
-    height: 56px;
-    border-radius: 50% !important; /* Forces perfect circle shape */
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 8px 24px rgba(43, 45, 47, 0.25);
+  .video-banner {
+    height: 40vh;
+    min-height: 300px;
+    max-height: 400px;
+    position: relative;
+    z-index: 1;
   }
   
-  .phone-widget__text {
-    display: none !important; /* Hide label text completely */
+  .video-banner video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
   
-  .phone-widget__icon {
-    width: 24px;
-    height: 24px;
-    margin: 0;
+  .video-banner::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
   
-  @media (prefers-reduced-motion: no-preference) {
-    .phone-widget {
-      animation: widget-pulse 3s infinite ease-in-out;
-    }
-    
-    /* Gentle, calm expanding wave ripples */
-    .phone-widget::before {
-      animation: phone-ripple-wave 4s infinite cubic-bezier(0.16, 1, 0.3, 1);
-    }
+  .parallax-quote {
+    position: absolute;
+    top: 50%;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    padding: 0 var(--space-200);
   }
 }
 
-@keyframes widget-pulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 8px 24px rgba(43, 45, 47, 0.25);
-  }
-  50% {
-    transform: scale(1.06) translateY(-2px);
-    box-shadow: 0 12px 32px rgba(43, 45, 47, 0.35);
-  }
-}
-
-@keyframes phone-ripple-wave {
-  0% {
-    transform: scale(1);
-    opacity: 0.55;
-  }
-  50% {
-    transform: scale(1.55);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1.55);
-    opacity: 0;
-  }
-}
-
-/* --- 14.5 Premium Touch-Swipe Blog Filters --- */
+/* --- Blog Filters Mobile --- */
 @media (max-width: 600px) {
   .blog-filters {
     justify-content: flex-start !important;
@@ -1287,11 +1365,11 @@ p {
     margin-right: 0;
     -webkit-overflow-scrolling: touch;
     gap: var(--space-200) !important;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
   }
   
   .blog-filters::-webkit-scrollbar {
-    display: none; /* Safari / Chrome */
+    display: none;
   }
   
   .blog-filter-btn {
@@ -1300,7 +1378,16 @@ p {
   }
 }
 
-/* --- 14.6 Brand Footer Center Alignment on Mobile --- */
+@media (max-width: 768px) {
+  .blog-card {
+    margin-bottom: var(--space-200);
+  }
+  [style*="grid-template-columns: repeat(auto-fit"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* --- Brand Footer Mobile --- */
 .brand-footer {
   border-top: 1px solid var(--color-border);
   padding: var(--space-600) 0;
@@ -1335,4 +1422,10 @@ p {
     justify-content: center !important;
     gap: var(--space-300) !important;
   }
+}
+
+/* --- Responsive Images --- */
+img, video {
+  max-width: 100%;
+  height: auto;
 }
